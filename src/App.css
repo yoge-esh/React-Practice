@@ -1,31 +1,38 @@
 *{
-  padding: 0;
-  margin: 0;
+    margin: 0;
+    padding: 0;
 }
 body{
-  background-color: rgb(192, 220, 245);
-  color: black;
-
+    background-color: purple;
+    color: white;
 }
 div{
-  text-align: center;
-  font-size: 1.2rem;
-  height: 100Vh;
-  width: 100%;
+    margin: 20% 0%;
+    text-align: center;
 }
-
-.content{
-  text-align: center;
-  padding-top: 20%;
-  /* color: white; */
+h2{
+    padding: 10px;
+    font-size: 1.5rem;
+}
+input{
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid gray;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 300px;
 }
 button{
-  padding: 15px;
-  background-color: crimson;
-  color: white;
-  cursor: pointer;
-  margin-top: 5px;
-  font-weight: 700;
-  border-radius:10px;
-  border: 1px solid gray;
+    display: block;
+    cursor: pointer;
+    margin-left: 45.5%;
+    width: 115px;
+    padding: 10px;
+    background-color: crimson;
+    color: white;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 10px;
+
 }
