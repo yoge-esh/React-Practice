@@ -33,6 +33,7 @@ function App() {
                 <h2>Welcome to React Form: {firstName.fname} {firstName.lname}</h2>
                 <p>{firstName.email}</p>
                 <p>{firstName.password}</p>
+                <p>{firstName.textarea}</p>
                 <form onSubmit={submit}>
                     <input
                         type="text"
