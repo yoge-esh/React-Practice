@@ -1,81 +1,52 @@
-import React, { useState } from "react";
-import "./App.css";
+import React, { useState } from 'react';
+import './App.css';
+import ToDoList from './ToDoList'; // Compare this snippet from React-Practice\src\ToDoList.js:
 
 function App() {
-    const [firstName, setFirstName] = useState({
-        fname: "",
-        lname: "",
-        email: "",
-        password: "",
-        textarea: "",
-    });
+    const [inputList, setInputList] = useState('');
+    const [items, setItems] = useState([]);
 
-    const inputEvent = (event) => {
-        const { name, value } = event.target;
-        setFirstName((prevState) => {
-            return {
-                ...prevState,
-                [name]: value
-            };
-        });
+    const handleEvent = (event) => {
+        setInputList(event.target.value); //setInputList is the name of the state variable
     };
 
-    const submit = (event) => {
+    const listOfItems = (event) => {
         event.preventDefault(); //prevent default action of form submit which is on page refresh
-        alert('form submmitted');
-    };
+        setItems((prevItems) => {
+            return [...prevItems, inputList]; //adds the inputList to the array
+        });
+        setInputList(''); //clear the input field
+    }
 
-
+    const deleteItem = (id) => {
+        console.log('delete');
+        setItems((prevItems) => { //prevItems is the name of the state variable
+            return prevItems.filter((item, index) => { //filter the array and return the items that are not the id
+                return index !== id; //returns the item if the index is not equal to the id
+            });
+        });
+    }
 
     return (
         <>
-            <div>
-                <h2>Welcome to React Form: {firstName.fname} {firstName.lname}</h2>
-                <p>{firstName.email}</p>
-                <p>{firstName.password}</p>
-                <p>{firstName.textarea}</p>
-                <form onSubmit={submit}>
-                    <input
-                        type="text"
-                        placeholder="Enter your First Name..."
-                        onChange={inputEvent}
-                        value={firstName.fname}
-                        name="fname"
-                    />
-                    <input
-                        type="text"
-                        placeholder="Enter your Last Name..."
-                        onChange={inputEvent}
-                        value={firstName.lname}
-                        name="lname"
-                    />
-                    <input
-                        type="email"
-                        placeholder="Enter your email..."
-                        onChange={inputEvent}
-                        value={firstName.email}
-                        name="email"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Enter your password..."
-                        onChange={inputEvent}
-                        value={firstName.password}
-                        name="password"
-                    />
-                    <textarea
-                        rows={4}
-                        cols={50}
-                        type="text"
-                        placeholder="Enter your message..."
-                        onChange={inputEvent}
-                        value={firstName.textarea}
-                        name="textarea"
-                    />
+            <div className='main-div'>
+                <div className='center_div'>
+                    <br />
+                    <h1>ToDo List</h1>
+                    <br />
+                    <input type="text"
+                        placeholder="Enter Task" 
+                        className='input_box'
+                        onChange={handleEvent}
+                        value={inputList} />
+                    <button onClick={listOfItems}> + </button>
 
-
-                    <button type="submit">Click Me</button>
-                </form>
+                    <ol>
+                        {items.map((item, index) => ( //map the array and return the items
+                            <ToDoList key={index} id={index} item={item} onSelect={deleteItem} /> //passing the item to ToDoList component
+                        ))}
+                    </ol>
+                </div>
             </div>
         </>
     );
